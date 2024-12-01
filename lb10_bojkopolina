@@ -1,0 +1,15 @@
+#include <iostream>
+#include <regex>
+using namespace std;
+
+int main() {
+    string text = "apple,dog, orange, stool, April, cat, beetle, sparrow, umbrella ";
+    regex vowel_pattern(R"(\b[AEIOUaeiou][a-zA-Z]*\b)");
+    smatch result;
+    int i = 1;
+    while (regex_search(text, result, vowel_pattern)) {
+        cout << "Слово " << i << ": " << result[0] << "\n";
+        text = result.suffix();
+        i++;
+    }
+}
